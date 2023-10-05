@@ -5,7 +5,7 @@ pipeline {
          stage('Init') {
             steps {
                 sh 'docker rm -f $(docker ps -qa) || true'
-		sh 'docker network create new-network'
+		sh 'docker network create new-network || true'
             }
         }
         stage('Build') {
