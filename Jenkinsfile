@@ -25,6 +25,14 @@ pipeline {
             archiveArtifacts artifacts: 'trivy-report.json', onlyIfSuccessful: true
         }
     }
+
+	stage('Execute Tests') {
+            steps {
+                script {
+                    // Run your Python application tests
+                    sh 'python3 -m unittest discover -s tests'
+                }
+            }
 	}
 
         stage('Deploy') {
