@@ -15,6 +15,12 @@ pipeline {
             }
         }
 
+	stage("security scan"){
+		steps{
+		sh "trivy fs"	
+		}
+	}
+
         stage('Deploy') {
             steps {
                 sh 'docker run -d --name flask-app --network new-network flask-app:latest'
