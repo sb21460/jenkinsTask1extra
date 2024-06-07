@@ -17,7 +17,7 @@ pipeline {
 
 	stage("security scan"){
 		steps{
-		sh "trivy fs"	
+		sh "trivy fs ."	
 		}
 	}
 
