@@ -17,8 +17,14 @@ pipeline {
 
 	stage("security scan"){
 		steps{
-		sh "trivy fs ."	
+		sh "trivy fs --format json -o trivy-report.json ."
 		}
+		post {
+        always {
+            // Archive the Trivy report
+            archiveArtifacts artifacts: 'trivy-report.json', onlyIfSuccessful: true
+        }
+    }
 	}
 
         stage('Deploy') {
