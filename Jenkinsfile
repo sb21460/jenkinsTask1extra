@@ -31,6 +31,7 @@ pipeline {
             steps {
                 script {
                     // Run your Python application tests
+                    sh 'pip install -r requirements.txt'
                     sh 'python3 -m unittest discover -s tests'
                 }
             }
