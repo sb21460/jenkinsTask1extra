@@ -30,11 +30,13 @@ pipeline {
         stage('Execute Tests') {
             steps {
                 script {
-                sh 'python3 -m venv .venv'
-                sh '. .venv/bin/activate'
-                sh 'pip install -r requirements.txt'
-                sh 'python3 -m unittest discover -s tests .'
-                sh 'deactivate'
+                sh '''
+                python3 -m venv .venv
+                . .venv/bin/activate
+                pip install -r requirements.txt
+                python3 -m unittest discover -s tests .
+                deactivate
+                '''
                 }
             }
         }
